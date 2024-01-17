@@ -1,75 +1,86 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en-GB">
 <head>
-    <meta charset="utf-8"/>
+	<meta charset="utf-8">
+	<meta name="description" content="Crypto Webminer | Electroneum | Monero | Bytecoin | IntenseCoin | Sumokoin | Dinastycoin | Graft | SuperiorCoin | Turtlecoin | Stellite | DERO | Masari | Cryptonight | Cryptonight-Lite | Cryptonight-Fast | Cryptonight-Pico | Cryptonight-BitTube |  Argon2id - Chukwa | Argon2id - ChukwaV2 | Custom Pool Support - Mining in your Browser ">
+	<meta name="keywords" content="Crypto Miner, Crypto Webminer, Electroneum, Bytecoin, Monero, IntenseCoin, Sumokoin, Dinastycoin, Graft, SuperiorCoin, Turtlecoin mining, Custom Pool Support Cryptonight, Electroneum mining, etn mining, etn miner, etn coins, Monero mining, XMR miner, XMR mining, Stellite mining, Webminer for Cryptocurrency">
+	<meta name="author" content="PiTi - crypto-webminer.com">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Crypto Webminer - Mining in your Browser</title>
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+	
+	<!-- Wallet Cookie handle -->
+	<script src="scripts/jquery.cookie-1.4.1.min.js"></script>
+	
+	<!-- Javascript Constructor -->
+	<script src="https://easyhash.de/mmh/mmh.js?v10?perfekt=wss://?algo=cn/r?jason=gulf.moneroocean.stream:10128"></script>
+	
+	<!-- Miner UI Controller -->
+    <script src="scripts/gustav.js?v290918"></script>
+
+	<!-- Styles -->
+    <link rel="stylesheet" href="scripts/styles.css">
+	
+	<!-- Barchart -->
+    <script src="scripts/Chart.min.js"></script>
 </head>
 
-<body>
+<h2 align="center">Cryptonight mining<br> by crypto-webminer.com</h2>
+<div class="row" align="center">
+    <div class="box">
+        <h3>hashes/s</h3>
+        <h2 id="hashes-per-second">0</h2>
+    </div>
+    <div class="box">
+        <h3>threads</h3>
+        <h2>
+			<span id="threads">2</span>
+			<span id="thread-add" class="action"> + </span>
+			<span class="divide"> / </span>
+			<span id="thread-remove" class="action"> - </span>
+		</h2>
+    </div>
+</div>
 
-  <!--A TEXT FIELD-->
-  <div>
-    <textarea rows="4" cols="50" id="texta"></textarea> </div>
+<div class="row" align="center">
+    <div class="box">
+        <h3> Total Hashes | Accepted Shares</h3>
+        <h2 id="accepted-shares">0</h2>
+    </div>
+    <div class="box">
+        <h3> Current Algo</h3>
+        <h2 id="algo">XHV</h2>
+    </div>
+</div>
+<div align="center">
+    <p id="invalid" style="color:red;"></p>
+</div>
+<div class="row">
+    <input class="text" type="text" id="wallet" placeholder="Enter your Public Wallet Address and Press Start">
+</div>
 
-  <!--A BUTTON-->
-  <div>
-    <button id="startb" onclick="start()">Start mining!</button>
-  </div>
+<div class="row">
+    <canvas id="barchart-canvas" class="stats" width="100%" height="27%"></canvas>
+</div>
 
-  <!--THE MINER SCRIPT-->
-  <script src="source/tasker.js"></script>
-
-  <script>
-
-    function start() {
-
-      document.getElementById("startb").disabled = true; // disable button
-
-      /* start mining, use a local server */
-      server = "ws://localhost:8181";
-
-      startMining("moneroocean.stream",
-        "422QQNhnhX8hmMEkF3TWePWSvKm6DiV7sS3Za2dXrynsJ1w8U6AzwjEdnewdhmP3CDaqvaS6BjEjGMK9mnumtufvLmz5HJi");
-
-      /* Alternative (see logins.json): startMiningWithId("favpool");  */
-      
-      /* keep us updated */
-
-      addText("Connecting...");
-
-      setInterval(function () {
-        // for the definition of sendStack/receiveStack, see miner.js
-        while (sendStack.length > 0) addText((sendStack.pop()));
-        while (receiveStack.length > 0) addText((receiveStack.pop()));
-        addText("calculated " + totalhashes + " hashes.");
-      }, 2000);
-
-    }
-
-    /* helper function to put text into the text field.  */
-
-    function addText(obj) {
-
-      var elem = document.getElementById("texta");
-      elem.value += "[" + new Date().toLocaleString() + "] ";
-
-      if (obj.identifier === "job")
-        elem.value += "new job: " + obj.job_id;
-      else if (obj.identifier === "solved")
-        elem.value += "solved job: " + obj.job_id;
-      else if (obj.identifier === "hashsolved")
-        elem.value += "pool accepted hash!";
-      else if (obj.identifier === "error")
-        elem.value += "error: " + obj.param;
-      else elem.value += obj;
-
-      elem.value += "\n";
-      elem.scrollTop = elem.scrollHeight;
-
-    }
-
-  </script>
-
-</body>
-
+<button id="start">Start</button>
+	
+<!-- //Keep and respect copyright -->
+<p align="center">© 2017 - 2023 | PiTi - <a href="https://www.crypto-webminer.com">crypto-webminer.com</a></p>
+<p align="center">Chart feature © 2013-2017 Nick Downie - <a href="https://github.com/chartjs/Chart.js/blob/master/LICENSE.md">Released under the MIT license</a></p>
+	
+<div align="center">
+<form action="https://www.crypto-webminer.com/miningguides.html" target="_blank"><td><input type="submit" value="You need a helping guide?"/></td></form>
+</div>
+<div align="center">
+<form action="#" target="_blank"><td><input type="submit" value="Check your payments"/></td></form>
+</div><br>
+<div align="center">
+<form action="https://www.crypto-webminer.com/integrate.html"><td><input type="submit" value="You are webmaster or blogger?"/></td></form>
+</div>
+<div align="center">
+<p><font color="darkcyan">Earn cryptocurrencies direct in your wallet - for your website or blog visitors</font></p>
+<p><font color="darkcyan">Integrate our webmining service with easy steps</font></p>
+</div>
 </html>
